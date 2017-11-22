@@ -1,14 +1,19 @@
 package org.serdar.deeplearning;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.security.Principal;
 
-@RestController
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@org.springframework.stereotype.Controller
+@EnableAutoConfiguration
 public class Controller {
 
     @RequestMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }
-
+    public String index(HttpServletRequest request, Principal principal) {
+    	request.setAttribute("principal", principal);
+        return "index";
+    }  
 }
