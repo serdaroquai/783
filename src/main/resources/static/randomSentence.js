@@ -724,13 +724,18 @@ $( document ).ready(function() {
 	refresh();
 	$( "#input" ).keydown(function(event) {
 		arr = append(event.keyCode,event.type,event.timeStamp, event.keyCode == 13)
-		if (event.keyCode == 13) { // enter
+		if (event.keyCode === 13) { // enter
+			
+			//TODO send to server
+			
 			console.log(arr)
 			refresh()
 		}
 	});
 	$( "#input" ).keyup(function(event) {
-		append(event.keyCode,event.type,event.timeStamp)
+		if (event.keyCode !== 13) { // enter
+			append(event.keyCode,event.type,event.timeStamp)
+		}
 	});
 });
 
