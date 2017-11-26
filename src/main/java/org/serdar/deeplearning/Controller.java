@@ -16,4 +16,5 @@ public class Controller {
     	request.setAttribute("principal", principal);
         return "index";
     }  
+    
 }

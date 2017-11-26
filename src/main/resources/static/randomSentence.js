@@ -704,6 +704,7 @@ const refresh = () => {
 	$('#example').val(arrStr)
 	arrStr = ""
 	$('#input').val("")
+	$('#counter').html(count())
 }
 
 const append = (() => {
@@ -720,13 +721,41 @@ const append = (() => {
 	}
 })();
 
+const count = (() => {
+	var count = 0;
+	
+	return ()=>{
+		count++
+		return count;
+	}
+})();
+
+const sendToServer = (payload) => {
+	 $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/api/sendToServer",
+        data: JSON.stringify(payload),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+            console.log("SUCCESS : ", data);
+
+        },
+        error: function (e) {
+            console.log("ERROR : ", e);
+        }
+    });
+}
+
 $( document ).ready(function() {
 	refresh();
 	$( "#input" ).keydown(function(event) {
-		arr = append(event.keyCode,event.type,event.timeStamp, event.keyCode == 13)
+		arr = append(event.keyCode,event.type,Date.now(), event.keyCode == 13)
 		if (event.keyCode === 13) { // enter
 			
-			//TODO send to server
+			sendToServer(arr)
 			
 			console.log(arr)
 			refresh()
@@ -734,7 +763,7 @@ $( document ).ready(function() {
 	});
 	$( "#input" ).keyup(function(event) {
 		if (event.keyCode !== 13) { // enter
-			append(event.keyCode,event.type,event.timeStamp)
+			append(event.keyCode,event.type,Date.now())
 		}
 	});
 });
