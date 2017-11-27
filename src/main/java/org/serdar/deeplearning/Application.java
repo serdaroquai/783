@@ -8,6 +8,7 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        // nohup java -jar 783-0.0.1-SNAPSHOT.jar >> /dev/null 2>&1 &
     }
 
 }

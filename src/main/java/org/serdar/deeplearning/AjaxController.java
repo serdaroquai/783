@@ -1,6 +1,8 @@
 package org.serdar.deeplearning;
 
 import java.security.Principal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +14,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -61,8 +66,24 @@ public class AjaxController {
 		//INSERT INTO SENTENCES(name,key,type,timestamp) VALUES ('test',1,'keydown',12342534)
 		jdbcTemplate.batchUpdate("INSERT INTO sentences(name,key,type,timestamp) "
 				+ "VALUES (?,?,?,?)", params);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public @ResponseBody List<KeyData> get(Principal principal) {
+		List<KeyData> query = jdbcTemplate.query("SELECT * FROM SENTENCES ORDER BY ID", new RowMapper<KeyData>(){
+
+			@Override
+			public KeyData mapRow(ResultSet rs, int index) throws SQLException {
+				KeyData k = new KeyData();
+				k.setName(rs.getString("NAME"));
+				k.setKey(rs.getInt("KEY"));
+				k.setType(rs.getString("TYPE"));
+				k.setTimestamp(rs.getLong("TIMESTAMP"));
+				return k;
+			}
+			
+		});
 		
-		
-		
+		return query;
 	}
 }
