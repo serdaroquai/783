@@ -34,18 +34,17 @@ public class AjaxController {
 	@PostConstruct
 	private void initialize() {
 		// CREATE TABLE sentences(id int primary key auto_increment,name VARCHAR(16),key INT,type VARCHAR(16), timestamp INT8)
-//		log.info("Intializing tables");
-//		try {
-//			jdbcTemplate.execute("CREATE TABLE sentences("
-//					+ "id SERIAL, "
-//					+ "name VARCHAR(16), "
-//					+ "key INT, "
-//					+ "type VARCHAR(16), "
-//					+ "timestamp INT8, "
-//					+ ")");			
-//		} catch (Exception e) {
-//			log.error(e.getMessage());
-//		}
+		log.info("Intializing tables");
+		try {
+			jdbcTemplate.execute("CREATE TABLE sentences("
+					+ "id int primary key auto_increment, "
+					+ "name VARCHAR(16), "
+					+ "key INT, "
+					+ "type VARCHAR(16), "
+					+ "timestamp INT8)");			
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 	}
 	
 	@PostMapping(value="/sendToServer")
