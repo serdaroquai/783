@@ -1,0 +1,388 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"x",
+				"xTime"
+			],
+			[
+				"bitst",
+				"bitstamp_ticker"
+			],
+			[
+				"btc",
+				"btcturk"
+			],
+			[
+				"img_",
+				"img_rows"
+			],
+			[
+				"out",
+				"out_list"
+			],
+			[
+				"T",
+				"T"
+			],
+			[
+				"N",
+				"N"
+			],
+			[
+				"Roc",
+				"ROC"
+			],
+			[
+				"tesT_",
+				"test_data"
+			],
+			[
+				"y",
+				"yhat"
+			],
+			[
+				"test",
+				"test_labels"
+			],
+			[
+				"w",
+				"wFinal"
+			],
+			[
+				"grad",
+				"gradW"
+			],
+			[
+				"num",
+				"num_iters"
+			],
+			[
+				"exp",
+				"expTerm"
+			],
+			[
+				"b",
+				"b"
+			],
+			[
+				"is",
+				"isInTerminalState"
+			],
+			[
+				"imp",
+				"impassableTupleList"
+			],
+			[
+				"im",
+				"impassableTerrain"
+			],
+			[
+				"current",
+				"currentPlayer"
+			],
+			[
+				"z",
+				"zeros"
+			],
+			[
+				"a",
+				"a"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "import numpy as np\nimport pandas as pd\n\npd.read_json('').head()\n",
+			"file": "src/main/python/conv.py",
+			"file_size": 59,
+			"file_write_time": 131565463049790110,
+			"settings":
+			{
+				"buffer_size": 64,
+				"line_ending": "Unix",
+				"name": "import numpy as np"
+			}
+		},
+		{
+			"file": "src/main/resources/data/data.json",
+			"settings":
+			{
+				"buffer_size": 842249,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 124.0,
+		"last_filter": "Package Control: insta",
+		"selected_items":
+		[
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: li",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 461.0
+	},
+	"console":
+	{
+		"height": 509.0,
+		"history":
+		[
+			"pwd",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/simo/github/783/src/main/python"
+	],
+	"file_history":
+	[
+		"/home/simo/github/783/783.sublime-project",
+		"/home/simo/github/783/src/main/python/783.sublime-project",
+		"/media/sf_share/783/hw2/myNN.pyc",
+		"/home/simo/Desktop/trainVsTestLoss.png",
+		"/media/sf_share/783/hw1/main.py",
+		"/media/sf_share/783/hw1/plot_boundary_on_data.py",
+		"/media/sf_share/783/hw2/hw2.pdf",
+		"/media/sf_share/783/hw2/data/spiral.npz",
+		"/media/sf_share/783/hw2/run_softmax.py",
+		"/media/sf_share/783/hw2/run_MLP.py",
+		"/media/sf_share/783/hw1/hw1_sol.py",
+		"/media/sf_share/783/hw1/data/moon_data_test.pickle.gz",
+		"/media/sf_share/783/hw1/data/linear_data_test.pickle.gz",
+		"/home/simo/github/tictactoe/tic_tac_toe_serdar.py",
+		"/home/simo/github/tictactoe/Grid.py",
+		"/home/simo/machine_learning_examples/rl/tic_tac_toe.py",
+		"/home/simo/machine_learning_examples/rl/tic_tac_toe_serdar.py",
+		"/home/simo/tensorflow_tutorial/cnn_mnist.py",
+		"/home/simo/kaggle/titanic/data/gender_submission.csv"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/main/python/conv.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 64,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								39,
+								39
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import numpy as np",
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/main/resources/data/data.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 842249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 126.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "783.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 274.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
