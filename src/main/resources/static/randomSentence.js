@@ -744,26 +744,34 @@ const sendToServer = (payload) => {
 
         },
         error: function (e) {
-            console.log("ERROR : ", e);
+            alert("Error sending data to server. Please try again later", e);
         }
     });
+}
+
+const time = () => {
+	return Math.floor((performance.timing.navigationStart + performance.now())*1000)
 }
 
 $( document ).ready(function() {
 	refresh();
 	$( "#input" ).keydown(function(event) {
-		arr = append(event.keyCode,event.type,Date.now(), event.keyCode == 13)
+		arr = append(event.keyCode,event.type,time())
+//		if (event.keyCode === 13) { // enter
+//			
+//			sendToServer(arr)
+//			
+//			console.log(arr)
+//			refresh()
+//		}
+	});
+	$( "#input" ).keyup(function(event) {
+		arr = append(event.keyCode,event.type,time(), event.keyCode == 13)
 		if (event.keyCode === 13) { // enter
-			
 			sendToServer(arr)
 			
 			console.log(arr)
 			refresh()
-		}
-	});
-	$( "#input" ).keyup(function(event) {
-		if (event.keyCode !== 13) { // enter
-			append(event.keyCode,event.type,Date.now())
 		}
 	});
 });
