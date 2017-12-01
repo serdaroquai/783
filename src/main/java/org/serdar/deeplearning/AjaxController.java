@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -134,6 +135,19 @@ public class AjaxController {
 		
 		return result;
 		
+	}
+	
+	@RequestMapping(value="/deleteData/{password}",method=RequestMethod.GET)
+    public @ResponseBody String sendToServer(@PathVariable String password, Principal principal) {
+		if ("123qwe".equals(password)) {
+			log.info("Deleting data");
+			
+			jdbcTemplate.execute("DELETE FROM SENTENCES");
+		} else {
+			throw new RuntimeException("Wrong password");
+		}
+		
+		return "{}";
 	}
 	
 	private List<KeyData> getKeyData() {
