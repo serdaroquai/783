@@ -1,10 +1,8 @@
 package org.serdar.deeplearning;
 
+import java.io.FileReader;
 import java.security.Principal;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -16,14 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 @RestController
 @RequestMapping("/api")
@@ -86,6 +85,7 @@ public class AjaxController {
 		List<KeyCompact> result = new ArrayList<KeyCompact>();
 		
 		for (KeyData raw : rawData) {
+//			System.out.println(raw);
 			if ("keydown".equals(raw.type)) {
 				KeyCompact key = new KeyCompact(Label.valueOf(raw.name).asInt(),raw.key,raw.timestamp);
 				if (13 == key.key) {
@@ -95,9 +95,14 @@ public class AjaxController {
 					keyDownStack.push(key);					
 				}
 			} else {
-				//can't keyup a key without keydown
+				
 				KeyCompact pop = null;
 				do {
+					//can't keyup a key without keydown
+					if (keyDownStack.isEmpty()) {
+						log.warn("keydown stack empty where it shouldn't be: " + raw );
+						break;
+					} 					
 					pop = keyDownStack.pop();
 					
 					if (pop.key.equals(raw.key)) {
@@ -136,20 +141,32 @@ public class AjaxController {
 	}
 	
 	private List<KeyData> getKeyData() {
-		List<KeyData> query = jdbcTemplate.query("SELECT * FROM SENTENCES ORDER BY name, timestamp", new RowMapper<KeyData>(){
-
-			@Override
-			public KeyData mapRow(ResultSet rs, int index) throws SQLException {
-				KeyData k = new KeyData();
-				k.setName(rs.getString("NAME"));
-				k.setKey(rs.getInt("KEY"));
-				k.setType(rs.getString("TYPE"));
-				k.setTimestamp(rs.getLong("TIMESTAMP"));
-				return k;
-			}
-			
-		});
 		
-		return query;
+		try {
+			FileReader fileReader = new FileReader("src/main/resources/static/data31.json");
+			ObjectMapper mapper = new ObjectMapper();
+			List<KeyData> result = mapper.readValue(fileReader, TypeFactory.defaultInstance()
+		            .constructCollectionType(List.class, KeyData.class));
+			
+			return result;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} 
+		
+//		List<KeyData> query = jdbcTemplate.query("SELECT * FROM SENTENCES ORDER BY name, timestamp", new RowMapper<KeyData>(){
+//
+//			@Override
+//			public KeyData mapRow(ResultSet rs, int index) throws SQLException {
+//				KeyData k = new KeyData();
+//				k.setName(rs.getString("NAME"));
+//				k.setKey(rs.getInt("KEY"));
+//				k.setType(rs.getString("TYPE"));
+//				k.setTimestamp(rs.getLong("TIMESTAMP"));
+//				return k;
+//			}
+//			
+//		});
+//		
+//		return query;
 	}
 }
