@@ -31,6 +31,12 @@ public class KeyData {
 	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
 	}
+	@Override
+	public String toString() {
+		return "KeyData [name=" + name + ", key=" + key + ", type=" + type + ", timestamp=" + timestamp + "]";
+	}
+	
+	
 	
 	
 }

@@ -4,7 +4,9 @@ import java.security.Principal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,7 +72,71 @@ public class AjaxController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<KeyData> get(Principal principal) {
-		List<KeyData> query = jdbcTemplate.query("SELECT * FROM SENTENCES ORDER BY ID", new RowMapper<KeyData>(){
+		return getKeyData();
+	}
+	
+	@RequestMapping(value="/refined",method=RequestMethod.GET)
+	public @ResponseBody List<KeyCompact> getRefined(Principal principal) {
+		 // Dwell time (the time a key pressed) and Flight time (the time between "key up" and the next "key down")
+		// u can not keydown the same key without keyupping it first 
+		List<KeyData> rawData = getKeyData();
+		
+		Stack<KeyCompact> swapCache = new Stack<KeyCompact>();
+		Stack<KeyCompact> keyDownStack = new Stack<KeyCompact>();
+		List<KeyCompact> result = new ArrayList<KeyCompact>();
+		
+		for (KeyData raw : rawData) {
+			if ("keydown".equals(raw.type)) {
+				KeyCompact key = new KeyCompact(Label.valueOf(raw.name).asInt(),raw.key,raw.timestamp);
+				if (13 == key.key) {
+					//if key is 'enter' just push it to result (since we don't collect enter keyups
+					result.add(key);
+				} else {
+					keyDownStack.push(key);					
+				}
+			} else {
+				//can't keyup a key without keydown
+				KeyCompact pop = null;
+				do {
+					pop = keyDownStack.pop();
+					
+					if (pop.key.equals(raw.key)) {
+						pop.keyup = raw.timestamp;
+						result.add(pop);
+					} else {
+						swapCache.push(pop);
+					}
+				} while (!pop.key.equals(raw.key));
+				
+				//now push em back in
+				while (!swapCache.isEmpty()) {
+					keyDownStack.push(swapCache.pop());
+				}
+			}
+		}
+		
+		//now iterate result once and set dwell flight times
+		KeyCompact current,next;
+		for (int i = 0; i < result.size()-1; i++) {
+			current = result.get(i);
+			next = result.get(i+1);
+			
+			if (13 != current.key) { 
+				current.dwell = current.keyup - current.keydown;
+				current.flight = next.keydown - current.keyup; // can be negative				
+			}
+		}
+		
+		// at this point we have every keys values set except for the last one which is an enter
+		// also there could be long gaps between an enter and the next sentences first letter
+		// since we wont use enters in our data set it wont matter.
+		
+		return result;
+		
+	}
+	
+	private List<KeyData> getKeyData() {
+		List<KeyData> query = jdbcTemplate.query("SELECT * FROM SENTENCES ORDER BY name, timestamp", new RowMapper<KeyData>(){
 
 			@Override
 			public KeyData mapRow(ResultSet rs, int index) throws SQLException {
