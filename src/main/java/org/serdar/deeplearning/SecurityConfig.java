@@ -24,15 +24,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()
-//				.withUser("serdar").password("serdar1234").roles("USER").and()
-//				.withUser("player2").password("player2").roles("USER").and()
-//				.withUser("player3").password("player3").roles("USER").and()
-			.withUser("user29").password("29").roles("USER").and()
-			.withUser("user31").password("31").roles("USER").and()
-			.withUser("user37").password("37").roles("USER").and()
-			.withUser("user41").password("41").roles("USER").and()
-			.withUser("user43").password("43").roles("USER").and()
-			.withUser("user47").password("47").roles("USER").and()
-			.withUser("user53").password("53").roles("USER");
+			.withUser("user29").password("29").roles("USER").and() //serdar
+			.withUser("user31").password("31").roles("USER").and() //suheyl
+			.withUser("user37").password("37").roles("USER").and() //zülü
+			.withUser("user41").password("41").roles("USER").and() //erk
+			.withUser("user43").password("43").roles("USER").and() //ilke
+			.withUser("user47").password("47").roles("USER").and() //sinan
+			.withUser("user53").password("53").roles("USER").and() //cevik
+			.withUser("user59").password("59").roles("USER").and()
+			.withUser("user61").password("61").roles("USER").and()
+			.withUser("user67").password("67").roles("USER").and()
+			.withUser("user71").password("71").roles("USER").and()
+			.withUser("user73").password("73").roles("USER").and()
+			.withUser("user79").password("79").roles("USER").and()
+			.withUser("user83").password("83").roles("USER").and()
+			.withUser("user89").password("89").roles("USER").and()
+			.withUser("user97").password("97").roles("USER").and()
+			.withUser("user101").password("101").roles("USER").and()
+			.withUser("user103").password("103").roles("USER").and()
+			.withUser("user107").password("107").roles("USER").and()
+			.withUser("user109").password("109").roles("USER").and()
+			.withUser("user113").password("113").roles("USER").and()
+			.withUser("user127").password("127").roles("USER").and()
+			.withUser("user131").password("131").roles("USER").and()
+			.withUser("user137").password("137").roles("USER").and()
+			.withUser("user139").password("139").roles("USER").and()
+			.withUser("user149").password("149").roles("USER").and()
+			.withUser("user151").password("151").roles("USER");
+			
 	}
 }
