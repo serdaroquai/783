@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()
+			/*
 			.withUser("user29").password("29").roles("USER").and() //serdar
 			.withUser("user31").password("31").roles("USER").and() //suheyl
 			.withUser("user37").password("37").roles("USER").and() //zülü
@@ -50,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.withUser("user137").password("137").roles("USER").and()
 			.withUser("user139").password("139").roles("USER").and()
 			.withUser("user149").password("149").roles("USER").and()
-			.withUser("user151").password("151").roles("USER");
+			*/
+			.withUser("user151").password("151").roles("USER"); // multi-user
 			
 	}
 }
