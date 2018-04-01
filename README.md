@@ -1,9 +1,9 @@
-#Typing Charactheristics
+Presentation:
+https://docs.google.com/presentation/d/1iqaiNRbBRSEJPvN8LWT2RPTejQUoa1_3eXhNYk4OI2I/edit?usp=sharing
 
-###Notes to self:
+Paper:
+https://drive.google.com/file/d/1ME8Hf4yAszu_Y2JLSr0_KBW48i-M-yNi/view?usp=sharing
 
-Need to be careful about key==13 (Return) flight times being very high between different sessions.
+Colab link for classification:
+https://drive.google.com/file/d/1JzeTPg9lvLZD0bDTJz1OJzq0q5vt02O2/view?usp=sharing
 
-Possible point of failure is having key down at the end of first sentence but the key up at the start of the next. Normally this is not a problem but if that sentence is never saved then it becomes a problem. 
-
-Need to normalize continuous input, and one hot vector the keys (they are discrete)
